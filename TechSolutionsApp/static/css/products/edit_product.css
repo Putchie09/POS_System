@@ -1,0 +1,106 @@
+/* Contenedor principal del formulario */
+.form-container {
+    width: 100%;
+    max-width: 500px;
+    margin: 40px auto;
+    background-color: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Título del formulario */
+.form-container h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #3c3c3c;
+}
+
+/* Etiquetas de los campos */
+.form-container label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #333;
+}
+
+/* Inputs texto, archivo y selects */
+.form-container input[type="text"],
+.form-container input[type="file"],
+.form-container select {
+    width: 100%;
+    padding: 12px 15px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    box-sizing: border-box;
+    font-size: 16px;
+    transition: border 0.3s, box-shadow 0.3s;
+}
+
+/* Focus para inputs texto y selects */
+.form-container input[type="text"]:focus,
+.form-container select:focus {
+    border-color: #7bde9d;
+    box-shadow: 0 0 0 3px rgba(123, 222, 157, 0.2);
+    outline: none;
+}
+
+/* Botones principales */
+.form-container button {
+    width: 100%;
+    padding: 12px;
+    background-color: #7bde9d;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-weight: bold;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+/* Hover en botones */
+.form-container button:hover {
+    background-color: #60cb89;
+}
+
+/* Inputs tipo número */
+.form-container input[type="number"] {
+    width: 100%;
+    padding: 12px 15px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    box-sizing: border-box;
+    font-size: 16px;
+    transition: border 0.3s, box-shadow 0.3s;
+}
+
+/* Botón cancelar estilo */
+.form-container .cancel-button {
+    text-align: center;
+    width: 100%;
+    padding: 12px;
+    background-color: #ccc;
+    color: #333;
+    border: none;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    text-decoration: none;
+}
+
+/* Hover para botón cancelar */
+.form-container .cancel-button:hover {
+    background-color: #b3b3b3;
+}
+
+/* Estilo uniforme para botones dentro de .form-buttons */
+.form-buttons button,
+.form-buttons .cancel-button {
+    display: block;
+    width: 100%;
+    margin-bottom: 12px;
+}

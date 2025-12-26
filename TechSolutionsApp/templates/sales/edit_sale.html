@@ -1,0 +1,62 @@
+{% extends 'layout.html' %}
+{% load static %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/sales/edit_sale.css' %}">
+{% endblock %}
+
+{% block titulo %}Editar venta{% endblock %}
+
+{% block contenido %}
+<div class="block-contenido">
+    <h1>Editar Venta #{{ sale.saleId }}</h1>
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <li class="{{ message.tags }}">{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    
+    <!--Formulario-->
+    <form method="POST">
+        {% csrf_token %}
+
+        <!-- Seleccionar cliente -->
+        <div class="form-group">
+            <label for="customer">Cliente:</label>
+            <select name="customer" id="customer" required>
+                {% for customer in customers %}
+                    <option value="{{ customer.customerId }}" {% if customer.customerId == sale.customer.customerId %}selected{% endif %}>
+                        {{ customer.firstName }} {{ customer.lastName }}
+                    </option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <!-- Descuento -->
+        <div class="form-group">
+            <label for="discount">Descuento (%):</label>
+            <input type="number" name="discount" id="discount" min="0" max="100" value="{{ sale.discountPercentage }}">
+        </div>
+
+        <!-- Detalles de productos -->
+        <div class="form-group">
+            <label>Productos:</label>
+            <ul class="details-list">
+                {% for detail in details %}
+                <li class="detail-item">
+                    {{ detail.product.name }} (₡{{ detail.unitPrice }} c/u)
+                    <input type="number" name="quantity_{{ detail.product.productId }}" value="{{ detail.quantity }}" min="0">
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <div class="form-buttons">
+            <button type="submit" class="submit-button">Guardar Cambios</button>
+            <a href="{% url 'view_sales' %}" class="cancel-button">Cancelar</a>
+        </div>
+    </form>
+</div>
+{% endblock %}

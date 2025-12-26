@@ -1,0 +1,60 @@
+{% extends 'layout.html' %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/products/edit_product.css' %}">
+{% endblock %}
+
+{% block contenido %}
+<div class="form-container">
+    <h2>Editar Producto</h2>
+
+    <!-- Sección de mensajes -->
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <li class="{{ message.tags }}">{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    <!-- Formulario para editar producto -->
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <label for="name">Nombre:</label>
+        <input type="text" name="name" id="name" value="{{ product.name }}" required>
+
+        <label for="category">Categoría:</label>
+        <select name="category" id="category" required>
+            {% for c in categories %}
+                <option value="{{ c.categoryId }}" {% if c.categoryId == product.category.categoryId %}selected{% endif %}>{{ c.name }}</option>
+            {% endfor %}
+        </select>
+
+        <label for="image">Imagen (opcional):</label>
+        <input type="file" name="image" id="image">
+
+        <label for="price">Precio:</label>
+        <input type="text" name="price" id="price" value="{{ product.price }}" required>
+
+        <label for="sku">SKU:</label>
+        <input type="text" name="sku" id="sku" value="{{ product.sku }}" required>
+
+        <label for="stock">Cantidad en inventario:</label>
+        <input type="number" name="stock" id="stock" value="{{ stock_quantity }}" min="0" required>
+
+        <label for="status">Estado:</label>
+        <select name="status" id="status" required>
+            <option value="activo" {% if product.status %}selected{% endif %}>Activo</option>
+            <option value="inactivo" {% if not product.status %}selected{% endif %}>Inactivo</option>
+        </select>
+
+        <!-- Botones del formulario -->
+        <div class='form-buttons'>
+        <button type="submit">Guardar Cambios</button>
+            <a href="{% url 'view_products' %}" class="cancel-button">Cancelar</a>
+        </div>
+    </form>
+</div>
+{% endblock %}

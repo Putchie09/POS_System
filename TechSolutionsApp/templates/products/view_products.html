@@ -1,0 +1,103 @@
+{% extends "layout.html" %}
+{% load static %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/products/view_products.css' %}">
+    <link rel="stylesheet" href="https://cdn-uicons.flaticon.com/uicons-solid-rounded/css/uicons-solid-rounded.css">
+{% endblock %}
+
+{% block contenido %}
+    <h2 class="page-title">Productos de la categoría {{ category.name }}</h2>
+    
+    <!-- Sección de mensajes -->
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <li class="message {{ message.tags }}">{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    <div class="search-container">
+        <!-- Barra de búsqueda -->
+        <form method="get" class="search-form">
+
+            <!-- Combobox de categorías -->
+            <select name="category" class="search-input" onchange="this.form.submit()">
+                <option value="0" {% if selected_category == 0 %}selected{% endif %}>Todas las categorías</option>
+                {% for cat in categories %}
+                    <option value="{{ cat.categoryId }}" {% if selected_category == cat.categoryId %}selected{% endif %}>
+                        {{ cat.name }}
+                    </option>
+                {% endfor %}
+            </select>
+
+            <!-- Barra de búsqueda -->
+            <input type="text" name="q" value="{{ query }}" placeholder="Buscar por nombre o SKU..." class="search-input">
+            <button type="submit" class="search-button">Buscar</button>
+        </form>
+    </div>
+
+    <!-- Lista de productos -->
+    {% if products %}
+        <div class="table-container">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>IMAGEN</th>
+                        <th>NOMBRE</th>
+                        <th>SKU</th>
+                        <th>CATEGORÍA</th>
+                        <th>PRECIO</th>
+                        <th>ESTADO</th>
+                        <th>STOCK</th>
+                        {% if role == 1 %}
+                            <th>ACCIONES</th>
+                        {% endif %}
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for product in products %}
+                        <tr>
+                            <td>
+                                {% if product.image %}
+                                    <img src="{{ product.image.url }}" alt="{{ product.name }}" class="product-img">
+                                {% else %}
+                                    <img src="/media/products/default.jpeg" alt="Imagen por defecto" class="product-img">
+                                {% endif %}
+                            </td>
+                            <td>{{ product.name }}</td>
+                            <td>{{ product.sku }}</td>
+                            <td>{{ product.category.name }}</td>
+                            <td>₡{{ product.price }}</td>
+                            <td>
+                                <span class="status {{ product.status|yesno:'activo,inactivo' }}">{{ product.status|yesno:"Activo,Inactivo" }}</span>
+                            </td>
+                            <td>{{ product.stock }}</td>
+                            
+                            <!-- Botones de acción -->
+                            {% if role == 1 %}
+                                <td class="actions">
+                                    <div class="actions-buttons">
+                                        <a href="{% url 'edit_product' product.productId %}" class="icon-link" title="Editar">
+                                            <img src="{% static 'images/icons/edit.svg' %}" alt="Editar" class="action-icon edit-icon">
+                                        </a>
+                                        <form method="POST" action="{% url 'delete_product' product.productId %}">
+                                            {% csrf_token %}
+                                            <button type="submit" class="icon-link" title="Eliminar" onclick="return confirm('¿Estás seguro de que deseas eliminar este producto?');">
+                                                <img src="{% static 'images/icons/delete.svg' %}" alt="Eliminar" class="action-icon delete-icon">
+                                            </button>
+                                        </form>
+                                    </div>
+                                </td>
+
+                            {% endif %}
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% else %}
+        <p class="no-products">No hay productos en esta categoría.</p>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>TechSolutions {% block titulo %}{% endblock %}</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/layout.css' %}"/>
+
+    <!-- Espacio para estilos adicionales específicos por página -->
+    {% block extra_css %}{% endblock %}
+
+</head>
+
+<body>
+
+    <!-- Menú toggle para pantallas pequeñas -->
+    <input type="checkbox" id="menu-toggle" class="menu-toggle">
+    <label for="menu-toggle" class="toggle-sidebar">☰</label>
+
+    <div class="container">
+        <!-- Menú lateral de navegación -->
+        <aside class="sidebar">
+            <h2>TechSolutions</h2>
+            <ul>
+
+                <!-- Sección de Productos -->
+                <li class="with-submenu">
+                    <a href="#">
+                        <img src="{% static 'images/icons/options.svg' %}" alt="Productos" class="icon-svg">
+                        Productos
+                    </a>
+                        <ul class="submenu">
+                        {% if request.session.role_id == 1 %}
+                            <li><a href="{% url 'add_product'%}">Agregar producto</a></li>
+                        {% endif %}
+                        <li><a href="{% url 'view_products'%}">Ver productos</a></li>
+                    </ul>
+                </li>
+
+                <!-- Sección de Categorías -->
+                <li class="with-submenu">
+                    <a href="#">
+                        <img src="{% static 'images/icons/categories.svg' %}" alt="Categorias" class="icon-svg">
+                        Categorías
+                    </a>
+                    <ul class="submenu">
+                        {% if request.session.role_id == 1 %}
+                            <li><a href="{% url 'add_category'%}">Agregar categoría</a></li>
+                        {% endif %}
+                        <li><a href="{% url 'view_categories'%}">Ver categorías</a></li>
+                    </ul>
+                </li>
+
+                <!-- Sección de Ventas -->
+                <li class="with-submenu">
+                    <a href="#">
+                        <img src="{% static 'images/icons/sales.svg' %}" alt="Ventas" class="icon-svg">
+                        Ventas
+                    </a>
+                    <ul class="submenu">
+                        <li><a href="{% url 'add_sale' %}">Agregar venta</a></li>
+                        <li><a href="{% url 'view_sales' %}">Ver ventas</a></li>
+                    </ul>
+                </li>
+
+                <!-- Sección de Clientes -->
+                <li class="with-submenu">
+                    <a href="#">
+                        <img src="{% static 'images/icons/person.svg' %}" alt="Clientes" class="icon-svg">
+                        Clientes
+                    </a>
+                    <ul class="submenu">
+                        <li><a href="{% url 'add_customer' %}">Agregar cliente</a></li>
+                        <li><a href="{% url 'view_customers' %}">Ver clientes</a></li>
+                    </ul>
+                </li>
+
+                <!-- Sección solo para Administradores -->
+                {% if request.session.role_id == 1 %}
+                    <li class="with-submenu">
+                        <a href="#">
+                            <img src="{% static 'images/icons/lock.svg' %}" alt="Admin" class="icon-svg">
+                            Administrador
+                        </a>
+                        <ul class="submenu">
+                            <li><a href="{% url 'add_employee' %}">Agregar empleado</a></li>
+                           <li><a href="{% url 'view_employees' %}">Empleados</a></li>
+                        </ul>
+                    </li>
+                {% endif %}
+            </ul>
+        </aside>
+
+        <!-- Contenido principal -->
+        <main class="main-content">
+
+            <!-- Barra superior con info del usuario -->
+            <div class="topbar">
+
+                <div class="user-menu">
+                    <span class="username">{{ request.session.name }}</span>
+                    <img src="{% static 'images/icons/person.svg' %}" alt="Usuario" class="icon-svg">
+
+                    <!-- Menú desplegable de usuario -->
+                    <div class="dropdown">
+                        <img src="{% static 'images/icons/dropdown.svg' %}" alt="dropdown" class="icon-svg">
+                        <ul class="dropdown-menu">
+                            <li><a href="{% url 'logout' %}">Cerrar sesión</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Título de la sección principal -->
+            <header>
+                <h1>{% block tituloContenido %}{% endblock %}</h1>
+            </header>
+
+            <!-- Sección donde se carga el contenido específico de cada vista -->
+            <section class="contenido">
+                {% block contenido %}
+                {% endblock %}
+            </section>
+        </main>
+    </div>
+
+    <!-- Pie de página -->
+    <footer class="footer">
+        TechSolutions &copy; Dayanara Campos, Yoel Putchie & Keleny Zamora {% now "d/m/Y" %}
+    </footer>
+
+</body>
+</html>

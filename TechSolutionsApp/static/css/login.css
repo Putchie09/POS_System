@@ -1,0 +1,97 @@
+/* Estilos generales del body */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #e0eef6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    padding: 20px;
+}
+
+/* Contenedor principal del login */
+.login-container {
+    width: 100%;
+    max-width: 400px;
+}
+
+/* Título de la página */
+h2 {
+    color: #7bde9d;
+    text-align: center;
+    margin-bottom: 25px;
+    font-size: 28px;
+}
+
+/* Mensaje de alerta para errores o avisos */
+.alert-message {
+    color: #ff4444;
+    background-color: #ffebee;
+    padding: 10px 15px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    text-align: center;
+    border: 1px solid #ffcccc;
+}
+
+/* Contenedor del formulario */
+form {
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Contenedor de cada grupo de campos */
+.form-group {
+    margin-bottom: 20px;
+}
+
+/* Etiquetas de los campos */
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #555;
+}
+
+/* Campos de texto y contraseña */
+input[type="text"],
+input[type="password"] {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: all 0.3s;
+    box-sizing: border-box;
+}
+
+/* Efecto al enfocar los campos */
+input[type="text"]:focus,
+input[type="password"]:focus {
+    border-color: #7bde9d;
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(123, 222, 157, 0.2);
+}
+
+/* Botón de envío */
+button {
+    width: 100%;
+    padding: 14px;
+    background-color: #7bde9d;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-top: 10px;
+}
+
+/* Efecto hover del botón */
+button:hover {
+    background-color: #68c389;
+}

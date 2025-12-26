@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <title>Login - TechSolutions</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/login.css' %}"/>
+</head>
+<body>
+    <div class="login-container">
+        <h2>Iniciar Sesión</h2>
+         <!---- Mostrar mensajes de error o confirmacion ---->
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert-message">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+        <!---- Formulario de inicio de sesion ---->
+        <form method="POST">
+            {% csrf_token %}
+            <div class="form-group">
+                <label>Usuario:</label>
+                <input type="text" name="username" required>
+            </div>
+            <div class="form-group">
+                <label>Contraseña:</label>
+                <input type="password" name="password" required>
+            </div>
+            <button type="submit">Ingresar</button>
+        </form>
+    </div>
+</body>
+</html>

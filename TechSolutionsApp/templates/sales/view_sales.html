@@ -1,0 +1,76 @@
+{% extends 'layout.html' %}
+{% load static %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/sales/view_sales.css' %}">
+{% endblock %}
+
+{% block titulo %}Listado de ventas{% endblock %}
+
+{% block contenido %}
+<div class="block-contenido">
+    <h1>Ventas registradas</h1>
+
+    <!--Muestra mensajes-->
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <li class="message {{ message.tags }}">{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    <!---- Lista de ventas ---->
+    <ul class="sales-list">
+      {% for sale in sales %}
+      <li class="sale-item">
+        <!---- Encabezado con ID y fecha de la venta ---->
+          <div class="sale-header">
+              <span class="sale-id">Venta #{{ sale.saleId }}</span>
+              <span class="sale-date">{{ sale.saleDate }}</span>
+          </div>
+          
+          <!---- Información general de la venta ---->
+          <div class="sale-info">
+              <p><strong>Usuario:</strong> {{ sale.user.firstName }} {{ sale.user.lastName }}</p>
+              <p><strong>Cliente:</strong> {{ sale.customer.firstName }} {{ sale.customer.lastName }}</p>
+              <p><strong>Cédula:</strong> {{ sale.customer.idNumber}}</p>
+              <p><strong>Descuento:</strong> {{ sale.discountPercentage|default:"0" }}%</p>
+          </div>
+
+          <!---- Detalles de los productos vendidos ---->
+          <p><strong>Detalles:</strong></p>
+          <ul class="details-list">
+              {% for detail in sale.saledetail_set.all %}
+              <li class="detail-item">{{ detail.quantity }} x {{ detail.product.name }} a ₡{{ detail.unitPrice }} c/u</li>
+              {% endfor %}
+          </ul>
+
+          <!---- Subtotal y total de la venta ---->
+          <div class="sale-totals">
+              <p class="subtotal">SubTotal: ₡{{ sale.subtotal }}</p>
+              <p class="total">Total: ₡{{ sale.total }}</p>
+          </div>
+          
+          <!---- Opciones de edición y eliminación en caso de ser admin ---->
+            {% if role == 1 %}
+                <a href="{% url 'edit_sale' sale.saleId %}" class="icon-link sale-edit-button" title="Editar">
+                    <img src="{% static 'images/icons/edit.svg' %}" alt="Editar" class="action-icon edit-icon">
+                </a>
+
+                <form method="POST" action="{% url 'delete_sale' sale.saleId %}" style="display:inline;">
+                    {% csrf_token %}
+                    <button type="submit" class="icon-link sale-delete-button" title="Eliminar"
+                            onclick="return confirm('¿Estás seguro de que deseas eliminar esta venta?');">
+                            <img src="{% static 'images/icons/delete.svg' %}" alt="Eliminar" class="action-icon delete-icon">
+                    </button>
+                </form>
+            {% endif %}
+          
+      </li>
+      <!--En caso de no haber ventas-->
+      {% empty %}
+        <li class="empty-message">No hay ventas registradas.</li>
+      {% endfor %}
+    </ul>
+</div>
+{% endblock %}

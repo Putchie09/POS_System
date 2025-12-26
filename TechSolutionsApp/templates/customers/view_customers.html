@@ -1,0 +1,62 @@
+{% extends 'layout.html' %}
+{% load static %}
+
+<!---- Cargar CSS específico para esta vista ---->
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/customers/view_customers.css' %}" />
+{% endblock %}
+
+{% block contenido %}
+<h2>Lista de Clientes</h2>
+
+<!---- Mostrar mensajes de éxito o error ---->
+	{% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <li class="message {{ message.tags }}">{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+	
+<div class="table-container">
+	<!---- Tabla con la lista de clientes ---->
+	<table>
+		<thead>
+			<tr>
+				<th>Nombre</th>
+				<th>Apellido</th>
+				<th>Correo Electrónico</th>
+				<th>Identificación</th>
+				<th>Acciones</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for customer in customers %}
+				<tr>
+					<td>{{ customer.firstName }}</td>
+					<td>{{ customer.lastName }}</td>
+					<td>{{ customer.email }}</td>
+					<td>{{ customer.idNumber }}</td>
+					
+					<td class="actions">
+						<div class="actions-buttons">
+							<!---- Boton para editar cliente ---->
+							<a href="{% url 'edit_customer' customer.customerId %}" class="icon-link" title="Editar">
+								<img src="{% static 'images/icons/edit.svg' %}" alt="Editar" class="action-icon edit-icon">
+							</a>
+							<!---- Formulario para eliminar cliente ---->
+							<form method="post" action="{% url 'delete_customer' customer.customerId %}" style="display:inline;">
+								{% csrf_token %}
+								<button type="submit" class="icon-link" title="Eliminar" onclick="return confirm('¿Estás seguro de que deseas eliminar este cliente?.');">
+									<img src="{% static 'images/icons/delete.svg' %}" alt="Eliminar" class="action-icon delete-icon">
+								</button>
+							</form>
+						</div>
+					</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+</div>
+
+{% endblock %}

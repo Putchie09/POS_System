@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+{% load static %}
+
+{% block extra_css %}
+	<link rel="stylesheet" href="{% static 'css/index.css' %}">
+{% endblock %}
+
+{% block contenido %}
+
+    <!--Muestra mensajes-->
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+            <li class="message {{ message.tags }}">{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+
+    <div class="icono-decorativo">
+        <!-- Se agrega un ícono de fondo-->
+        <img src="{% static 'images/icons/home.svg' %}" alt="home" class="icon-svg home-icon">
+    </div>
+{% endblock %}

@@ -1,0 +1,130 @@
+/* Contenedor principal */
+.block-contenido {
+    background: #fff;
+    border-radius: 12px;
+    padding: 25px;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.05);
+    margin-bottom: 30px;
+    margin: 30px auto;  
+    max-width: 600px;   
+    width: 90%;
+    text-align: center;
+}
+
+/* Título de la página */
+h1 {
+    font-size: 1.6rem;
+    color: #333;
+    margin-bottom: 25px;
+}
+
+/* Grupo del formulario */
+.form-group {
+    margin-bottom: 20px;
+}
+
+/* Etiquetas de los campos */
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: #555;
+}
+
+/* Estilo para inputs y selects */
+.form-group select,
+.form-group input[type="number"] {
+    width: 100%;
+    max-width: 300px;
+    padding: 10px 12px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    background-color: #fff;
+    transition: border 0.3s ease;
+}
+
+/* Estilo al enfocar campos */
+.form-group select:focus,
+.form-group input[type="number"]:focus {
+    border-color: #827adf;
+    outline: none;
+}
+
+/* Lista de productos en la venta */
+.details-list {
+    list-style: none;
+    padding: 0;
+    margin-top: 20px;
+    text-align: center;
+    justify-content: center;
+}
+
+/* Ítem individual con producto */
+.detail-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 15px;
+    color: #444;
+}
+
+/* Campo para editar cantidad */
+.detail-item input[type="number"] {
+    width: 80px;
+    padding: 8px 10px;
+    margin-left: 15px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    text-align: center;
+    transition: border 0.3s ease;
+}
+
+/* Estilo al enfocar campo cantidad */
+.detail-item input[type="number"]:focus {
+    border-color: #827adf;
+    outline: none;
+}
+
+/* Contenedor de botones */
+.form-buttons {
+    margin-top: 30px;
+}
+
+/* Botón guardar cambios */
+.submit-button {
+    padding: 12px 24px;
+    background-color: #827adf;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 500;
+    transition: background-color 0.3s ease;
+    margin-right: 10px;
+}
+
+/* Hover para botón guardar */
+.submit-button:hover {
+    background-color: #6059af;
+}
+
+/* Botón cancelar */
+.cancel-button {
+    padding: 12px 24px;
+    background-color: #ccc;
+    color: #333;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 500;
+    transition: background-color 0.3s ease;
+    text-decoration: none;
+}
+
+/* Hover para botón cancelar */
+.cancel-button:hover {
+    background-color: #aaa;
+}

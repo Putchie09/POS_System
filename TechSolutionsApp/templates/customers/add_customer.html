@@ -1,0 +1,42 @@
+{% extends 'layout.html' %}
+
+{% load static %}
+
+{% block extra_css %}
+	<link rel="stylesheet" href="{% static 'css/customers/add_customer.css' %}" />
+{% endblock %}
+
+<!--Contenido principal de la página -->
+{% block contenido %}
+<div class="form-container">
+	<h2>Agregar Cliente</h2>
+
+	<!--Muestra mensajes-->
+	{% if messages %}
+	<ul class="messages">
+		{% for message in messages %}
+		<li class="{{ message.tags }}">{{ message }}</li>
+		{% endfor %}
+	</ul>
+	{% endif %}
+
+	<!--Formulario de creación de cliente-->
+	<form method="post">
+		{% csrf_token %}
+
+		<label for="first_name">Nombre:</label>
+		<input type="text" name="first_name" id="first_name" required />
+
+		<label for="last_name">Apellido:</label>
+		<input type="text" name="last_name" id="last_name" required />
+
+		<label for="id_number">Cédula:</label>
+		<input type="text" name="id_number" id="id_number" required />
+
+		<label for="email">Correo Electrónico:</label>
+		<input type="email" name="email" id="email" />
+
+		<button type="submit">Agregar cliente</button>
+	</form>
+</div>
+{% endblock %}

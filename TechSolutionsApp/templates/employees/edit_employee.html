@@ -1,0 +1,63 @@
+{% extends 'layout.html' %}
+{% load static %}
+
+{% block extra_css %}
+  <link rel="stylesheet" href="{% static 'css/employees/edit_employee.css' %}" />
+{% endblock %}
+
+{% block contenido %}
+	<!-- Sección de mensajes -->
+	<div class="form-container">
+		<h2>Editar Empleado</h2>
+
+		{% if messages %}
+		<ul class="messages">
+			{% for message in messages %}
+				<li class="message {{ message.tags }}">{{ message }}</li>
+			{% endfor %}
+		</ul>
+		{% endif %}
+
+		<!-- Formulario -->
+		<form method="post">
+			{% csrf_token %}
+			<div>
+				<label for="firstName">Nombre:</label>
+				<input type="text" id="firstName" name="firstName" value="{{ employee.firstName }}" required />
+			</div>
+			<div>
+				<label for="lastName">Apellido:</label>
+				<input type="text" id="lastName" name="lastName" value="{{ employee.lastName }}" required />
+			</div>
+			<div>
+				<label for="idNumber">Identificación:</label>
+				<input type="text" id="idNumber" name="idNumber" value="{{ employee.idNumber }}" required />
+			</div>
+			<div>
+				<label for="phoneNumber">Teléfono:</label>
+				<input type="text" id="phoneNumber" name="phoneNumber" value="{{ employee.phoneNumber }}" required />
+			</div>
+
+			<div>
+				<label for="currentPassword">Contraseña actual:</label>
+				<input type="password" id="currentPassword" name="currentPassword" placeholder="Ingrésala si vas a cambiarla">
+			</div>
+
+			<div>
+				<label for="newPassword">Contraseña nueva:</label>
+				<input type="password" id="newPassword" name="newPassword" placeholder="Déjalo vacío si no quieres cambiarla">
+			</div>
+
+			<div>
+				<label>Rol:</label>
+				<p>{{ employee.role.description }}</p>
+			</div>
+
+			<!-- Botones de acción -->
+			<div class="buttons">
+				<button type="submit">Guardar Cambios</button>
+				<a href="{% url 'view_employees' %}" class="btn-cancel">Cancelar</a>
+			</div>
+		</form>
+	</div>
+{% endblock %}

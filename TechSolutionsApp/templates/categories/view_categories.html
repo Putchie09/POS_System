@@ -1,0 +1,73 @@
+{% extends "layout.html" %}
+{% load static %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/categories/view_categories.css' %}">
+    <link rel="stylesheet" href="https://cdn-uicons.flaticon.com/uicons-solid-rounded/css/uicons-solid-rounded.css">
+{% endblock %}
+
+{% block contenido %}
+    <h2 class="page-title">Categorías registradas</h2>
+
+    <!-- Sección de mensajes -->
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <li class="message {{ message.tags }}">{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    <!-- Barra de búsqueda -->
+    <div class="search-container">
+        <form method="get" class="search-form">
+            <input type="text" name="q" value="{{ query }}" placeholder="Buscar por nombre..." class="search-input">
+            <button type="submit" class="search-button">Buscar</button>
+        </form>
+    </div>
+
+    <!-- Lista de categorías -->
+    {% if categories %}
+        <div class="table-container">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>NOMBRE</th>
+                        {% if role == 1 %}
+                            <th>ACCIONES</th>
+                        {% endif %}
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for category in categories %}
+                        <tr>
+                            <td>{{ category.categoryId }}</td>
+                            <td>{{ category.name }}</td>
+
+                            <!-- Botones de acción -->
+                            {% if role == 1 %}
+                                <td class="actions">
+                                    <div class="actions-buttons">
+                                        <a href="{% url 'edit_category' category.categoryId %}" class="icon-link" title="Editar">
+                                            <img src="{% static 'images/icons/edit.svg' %}" alt="Editar" class="action-icon edit-icon">
+                                        </a>
+                                        <form method="POST" action="{% url 'delete_category' category.categoryId %}">
+                                            {% csrf_token %}
+                                            <button type="submit" class="icon-link" title="Eliminar" onclick="return confirm('¿Estás seguro de que deseas eliminar esta categoría?. Esta acción podría afectar a los productos registrados en dicha categoría.');">
+                                                <img src="{% static 'images/icons/delete.svg' %}" alt="Eliminar" class="action-icon delete-icon">
+                                            </button>
+                                        </form>
+                                    </div>
+                                </td>
+
+                            {% endif %}
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% else %}
+        <p class="no-categories">No hay categorías.</p>
+    {% endif %}
+{% endblock %}

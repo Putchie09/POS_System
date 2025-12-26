@@ -1,0 +1,31 @@
+{% extends 'layout.html' %}
+{% load static %}
+
+{% block tituloContenido %}{% endblock %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/categories/add_category.css' %}">
+{% endblock %}
+
+{% block contenido %}
+<div class="form-container">
+    <h2>Agregar Categoría</h2>
+
+    <!-- Sección de mensajes -->
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <li class="{{ message.tags }}">{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    <!-- Formulario -->
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <label for="name">Nombre:</label>
+        <input type="text" name="name" id="name" required>
+        <button type="submit">Agregar categoría</button>
+    </form>
+</div>
+{% endblock %}

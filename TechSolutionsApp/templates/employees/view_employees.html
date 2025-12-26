@@ -1,0 +1,72 @@
+{% extends 'layout.html' %}
+{% load static %}
+
+{% block extra_css %}
+	<link rel="stylesheet" href="{% static 'css/employees/view_employees.css' %}">
+{% endblock %}
+
+{% block contenido %}
+<h2>Lista de Empleados</h2>
+
+<!-- Sección de mensajes -->
+{% if messages %}
+	<ul class="messages">
+		{% for message in messages %}
+			<li class="message {{ message.tags }}">{{ message }}</li>
+		{% endfor %}
+	</ul>
+{% endif %}
+
+<!-- Lista de empleados -->
+<div class="table-container">
+	<table>
+	<thead>
+		<tr>
+		<th>Nombre</th>
+		<th>Apellido</th>
+		<th>Identificación</th>
+		<th>Teléfono</th>
+		<th>Rol</th>
+    {% if role == 1 %}
+		<th>Acciones</th>
+    {% endif %}
+		</tr>
+	</thead>
+	<tbody>
+	{% for employee in employees %}
+		<tr>
+		<td>{{ employee.firstName }}</td>
+		<td>{{ employee.lastName }}</td>
+		<td>{{ employee.idNumber }}</td>
+		<td>{{ employee.phoneNumber }}</td>
+		<td>{{ employee.role.description }}</td>
+		
+		<!-- Botones de accion -->
+    {% if role == 1 %}
+      <td class="actions">
+        <div class="actions-buttons">
+          <a href="{% url 'edit_employee' employee.employeeId %}" class="icon-link" title="Editar">
+            <img src="{% static 'images/icons/edit.svg' %}" alt="Editar" class="action-icon edit-icon">
+          </a>
+		  	{% if employee.role.roleId != 1 %}
+            <form method="post" action="{% url 'delete_employee' employee.employeeId %}">
+              {% csrf_token %}
+
+              <button type="submit" class="icon-link" title="Eliminar" onclick="return confirm('¿Estás seguro de que deseas eliminar este empleado?');">
+                <img src="{% static 'images/icons/delete.svg' %}" alt="Eliminar" class="action-icon delete-icon">
+              </button>
+            </form>
+			{% else %}
+			{% endif %}
+        </div>
+      </td>
+    {% endif %}
+
+		</tr>
+	{% empty %}
+		<tr><td colspan="6">No hay empleados registrados.</td></tr>
+	{% endfor %}
+	</tbody>
+	</table>
+</div>
+{% endblock %}

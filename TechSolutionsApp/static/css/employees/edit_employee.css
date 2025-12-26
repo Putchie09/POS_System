@@ -1,0 +1,94 @@
+/* Contenedor principal del formulario edit_employee */
+.form-container {
+    width: 100%;
+    max-width: 400px;
+    margin: 40px auto;
+    background-color: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Título del formulario */
+.form-container h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #3c3c3c;
+}
+
+/* Etiquetas de los campos */
+.form-container label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #333;
+}
+
+/* Campos de texto y correo electrónico */
+.form-container input[type="text"],
+.form-container input[type="password"],
+.form-container input[type="email"] {
+    width: 100%;
+    padding: 12px 15px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    box-sizing: border-box;
+    font-size: 16px;
+    transition: border 0.3s, box-shadow 0.3s;
+}
+
+/* Efecto al enfocar los campos */
+.form-container input[type="text"]:focus,
+.form-container input[type="password"]:focus,
+.form-container input[type="email"]:focus {
+    border-color: #7bde9d;
+    box-shadow: 0 0 0 3px rgba(123, 222, 157, 0.2);
+    outline: none;
+}
+
+/* Contenedor de botones de acción (guardar y cancelar) */
+.form-container .buttons {
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+}
+
+/* Estilos generales de los botones */
+.form-container button {
+    width: 100%;
+    padding: 12px;
+    background-color: #7bde9d;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+/* Efecto hover en el botón principal */
+.form-container button:hover {
+    background-color: #60cb89;
+}
+
+/* Botón de cancelar estilo enlace pero con aspecto de botón */
+.form-container .btn-cancel {
+    display: block;          
+    width: 100%;             
+    text-align: center;
+    background-color: #ccc;
+    color: #333;
+    padding: 12px;
+    border-radius: 6px;
+    text-decoration: none;    
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+    box-sizing: border-box;   
+}
+
+/* Efecto hover en el botón de cancelar */
+.form-container .btn-cancel:hover {
+    background-color: #bbb;
+}
+

@@ -1,0 +1,35 @@
+{% extends 'layout.html' %}
+{% load static %}
+
+{% block tituloContenido %}{% endblock %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/categories/edit_category.css' %}">
+{% endblock %}
+
+{% block contenido %}
+<div class="form-container">
+    <h2>Modificar Categoría</h2>
+
+    <!-- Sección de mensajes -->
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <li class="{{ message.tags }}">{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    <!-- Formulario -->
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <label for="name">Nombre:</label>
+        <input type="text" name="name" id="name" required value="{{ category.name }}">
+        <div class='form-buttons'>
+            <button type="submit">Modificar categoría</button>
+            <a href="{% url 'view_categories' %}" class="cancel-button">Cancelar</a>
+        </div>
+        
+    </form>
+</div>
+{% endblock %}

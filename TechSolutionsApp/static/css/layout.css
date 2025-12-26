@@ -1,0 +1,352 @@
+/* Reset básico para todo */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #e0eef6;
+    color: #333;
+    font-size: 16px;
+}
+
+/* Contenedor principal con flex para sidebar y contenido */
+.container {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* Sidebar blanco con borde y padding */
+.sidebar {
+    width: 250px;
+    background-color: #ffffff;
+    padding: 20px;
+    border-right: 1px solid #ddd;
+}
+
+/* Título de TechSolutions en sidebar */
+.sidebar h2 {
+    margin-bottom: 30px;
+    font-size: 24px;
+    color: #7bde9d;
+    text-align: center;
+}
+
+/* Lista del menú principal sin estilo */
+.sidebar ul {
+    list-style: none;
+}
+
+/* Espacio entre items principales */
+.sidebar>ul>li {
+    margin-bottom: 20px;
+}
+
+/* Enlaces del menú con fondo claro y texto gris */
+.sidebar ul li>a {
+    display: block;
+    padding: 10px 15px;
+    background-color: #f5f5f5;
+    color: #6c6d7b;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+}
+
+/* Hover cambia color texto */
+.sidebar ul li>a:hover {
+    background-color: #f5f5f5;
+    color: #7bde9d;
+}
+
+/* Iconos en enlaces */
+.sidebar ul li>a i {
+    margin-right: 8px;
+    font-size: 18px;
+    vertical-align: middle;
+}
+
+/* Submenús con fondo claro y padding */
+.submenu {
+    background-color: #f5f5f5;
+    padding-left: 15px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    border-radius: 8px;
+    margin-top: 5px;
+}
+
+/* Enlaces de submenú sin decoraciones */
+.submenu li a {
+    display: block;
+    padding: 6px 6px;
+    color: #000;
+    text-decoration: none;
+    border-radius: 6px;
+    transition: background-color 0.3s ease;
+}
+
+/* Hover submenú cambia fondo y texto */
+.submenu li a:hover {
+    background-color: #fff;
+    color: #000;
+}
+
+/* Contenido principal flex y padding */
+.main-content {
+    flex: 1;
+    padding: 30px;
+    position: relative;
+}
+
+/* Encabezado principal del contenido */
+.main-content header h1 {
+    color: #eaf4fc;
+    margin-bottom: 20px;
+    font-size: 28px;
+}
+
+/* Footer con fondo gris y texto centrado */
+.footer {
+    background-color: #d7e1eb;
+    color: #555;
+    text-align: center;
+    padding: 15px;
+    font-size: 14px;
+    border-top: 1px solid #ddd;
+}
+
+/* Oculta submenús por defecto */
+.submenu {
+    display: none;
+}
+
+/* Muestra submenú al hover del padre */
+.with-submenu:hover .submenu {
+    display: block;
+}
+
+/* Topbar con flex para alinear usuario */
+.topbar {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    background-color: #ffffff;
+    padding: 10px 20px;
+    border-bottom: 1px solid #ddd;
+    position: relative;
+    z-index: 10;
+}
+
+/* Menú usuario en topbar */
+.user-menu {
+    display: flex;
+    align-items: center;
+    position: relative;
+    cursor: pointer;
+    color: #6c6d7b;
+    font-weight: bold;
+}
+
+.user-menu i {
+    font-size: 20px;
+    margin-right: 8px;
+    color: #6c6d7b;
+}
+
+.user-menu .username {
+    margin-right: 5px;
+}
+
+/* Dropdown en usuario */
+.user-menu .dropdown {
+    position: relative;
+}
+
+.user-menu .dropdown i {
+    font-size: 16px;
+    color: #6c6d7b;
+}
+
+/* Menu dropdown oculto */
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    min-width: 140px;
+    z-index: 1000;
+}
+
+.dropdown-menu li {
+    list-style: none;
+}
+
+.dropdown-menu li a {
+    display: block;
+    padding: 10px;
+    text-decoration: none;
+    color: #333;
+    transition: background-color 0.2s;
+}
+
+/* Hover en dropdown */
+.dropdown-menu li a:hover {
+    background-color: #f5f5f5;
+    color: #7bde9d;
+}
+
+/* Muestra dropdown al hover en usuario */
+.user-menu:hover .dropdown-menu {
+    display: block;
+}
+
+/* Iconos SVG genéricos */
+.icon-svg {
+    width: 18px;
+    height: 18px;
+    vertical-align: middle;
+    margin-right: 8px;
+    color: #6c6d7b;
+}
+
+
+/* Responsive para pantallas chicas */
+@media (max-width: 768px) {
+    /* Cambia layout a columna */
+    .container {
+        flex-direction: column;
+    }
+
+    /* Sidebar al 100% ancho y con borde abajo */
+    .sidebar {
+        width: 100%;
+        border-right: none;
+        border-bottom: 1px solid #ddd;
+        padding: 15px;
+    }
+
+    .main-content {
+        padding: 15px;
+    }
+
+    /* Topbar apilado y con espacio */
+    .topbar {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    /* Links del sidebar más pequeños y con menos padding */
+    .sidebar ul li > a {
+        font-size: 0.95rem;
+        padding: 8px 12px;
+    }
+
+    /* Título más pequeño y menos margen */
+    .sidebar h2 {
+        font-size: 20px;
+        margin-bottom: 20px;
+    }
+
+    /* Menú usuario ocupa todo el ancho */
+    .user-menu {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    /* Dropdown sin posición fija */
+    .dropdown-menu {
+        position: static;
+        width: 100%;
+        border: none;
+        box-shadow: none;
+    }
+}
+
+/* Oculta checkbox para toggle sidebar */
+.menu-toggle {
+    display: none;
+}
+
+/* Botón hamburguesa ☰ */
+.toggle-sidebar {
+    display: none;
+    font-size: 24px;
+    cursor: pointer;
+    margin-right: auto;
+    padding: 8px 12px;
+    color: #6c6d7b;
+}
+
+
+
+
+/* Responsive: muestra botón hamburguesa */
+@media (max-width: 768px) {
+    .toggle-sidebar {
+        display: block;
+    }
+
+    /* Sidebar fijo y oculto al inicio */
+    .sidebar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 250px;
+        height: 100vh;
+        background-color: #fff;
+        transform: translateX(-100%);
+        transition: transform 0.3s ease;
+        z-index: 1000;
+        box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+    }
+
+    /* Muestra sidebar cuando toggle está activo */
+    .menu-toggle:checked ~ .container .sidebar {
+        transform: translateX(0);
+    }
+
+    /* Padding contenido */
+    .main-content {
+        padding: 20px;
+    }
+
+    /* Overlay cuando sidebar abierto */
+    .menu-toggle:checked ~ .container .main-content::before {
+        content: '';
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: rgba(0,0,0,0.3);
+        z-index: 999;
+    }
+}
+
+/* Botón hamburguesa fijo arriba */
+.toggle-sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1100;
+    background-color: #fff;
+    padding: 10px 15px;
+    border-bottom: 1px solid #ddd;
+}
+
+/* Empuja contenido para que no quede oculto debajo del botón */
+@media (max-width: 768px) {
+    .container {
+        margin-top: 50px;
+    }
+}

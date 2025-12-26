@@ -1,0 +1,59 @@
+{% extends 'layout.html' %}
+{% load static %}
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+{% block extra_css %}
+	<link rel="stylesheet" href="{% static 'css/products/add_product.css' %}" />
+{% endblock %}
+
+{% block contenido %}
+<div class="form-container">
+	<h2>Agregar Producto</h2>
+
+	<!-- Sección para mostrar mensajes al usuario -->
+	{% if messages %}
+		<ul class="messages">
+			{% for message in messages %}
+				<li class="{{ message.tags }}">{{ message }}</li>
+			{% endfor %}
+		</ul>
+	{% endif %}
+
+	<!-- Formulario POST -->
+	<form method="post" enctype="multipart/form-data">
+		{% csrf_token %}
+
+		<label for="name">Nombre:</label>
+		<input type="text" name="name" id="name" required />
+
+		<!-- Combobox para las categorías -->
+		<label for="category">Categoría:</label>
+		<select name="category" id="category" required>
+			{% for c in categories %}
+			    <option value="{{ c.categoryId }}">{{ c.name }}</option>
+			{% endfor %}
+		</select>
+
+		<label for="image">Imagen:</label>
+		<input type="file" name="image" id="image" />
+
+		<label for="price">Precio:</label>
+		<input type="text" name="price" id="price" required />
+
+		<label for="sku">SKU:</label>
+		<input type="text" name="sku" id="sku" required />
+
+		<label for="stock">Cantidad en inventario:</label>
+		<input type="number" name="stock" id="stock" min="0" required />
+
+		<label for="status">Estado:</label>
+		<select name="status" id="status" required>
+			<option value="activo">Activo</option>
+			<option value="inactivo">Inactivo</option>
+		</select>
+
+		<button type="submit">Agregar producto</button>
+	</form>
+</div>
+{% endblock %}

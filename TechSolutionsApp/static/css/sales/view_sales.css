@@ -1,0 +1,200 @@
+/* Contenedor principal para listado de ventas */
+.block-contenido {
+    background: #fff;
+    border-radius: 12px;
+    padding: 25px;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.05);
+    margin-bottom: 30px;
+}
+
+/* Título principal */
+h1 {
+    font-size: 1.8rem;
+    color: #333;
+    margin-bottom: 25px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+/* Lista de ventas */
+.sales-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* Item individual de venta */
+.sale-item {
+    background: #f7f9fc;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-left: 4px solid #827adf;
+}
+
+/* Encabezado de venta */
+.sale-header {
+    font-size: 1.2rem;
+    color: #444;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* ID de venta */
+.sale-id {
+    font-weight: 600;
+    color: #827adf;
+}
+
+/* Fecha de venta */
+.sale-date {
+    color: #666;
+    font-size: 0.95rem;
+    margin-right: 60px;
+}
+
+/* Información extra de la venta */
+.sale-info {
+    margin: 10px 0;
+    color: #555;
+    font-size: 0.95rem;
+}
+
+.sale-info strong {
+    color: #444;
+}
+
+/* Lista de detalles de venta */
+.details-list {
+    list-style: none;
+    padding: 0;
+    margin: 15px 0 0 15px;
+    border-left: 2px solid #e0e0e0;
+    padding-left: 15px;
+}
+
+/* Item individual de detalle */
+.detail-item {
+    padding: 8px 0;
+    border-bottom: 1px dashed #e0e0e0;
+}
+
+.detail-item:last-child {
+    border-bottom: none;
+}
+
+/* Totales de la venta */
+.sale-totals {
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px solid #e0e0e0;
+}
+
+/* Subtotal */
+.subtotal {
+    color: #666;
+    font-size: 0.95rem;
+}
+
+/* Total final */
+.total {
+    font-weight: 600;
+    color: #2e7d32;
+    font-size: 1.1rem;
+    margin-top: 5px;
+}
+
+/* Mensaje cuando no hay ventas */
+.empty-message {
+    color: #666;
+    font-style: italic;
+    padding: 20px;
+    text-align: center;
+    background: #f7f9fc;
+    border-radius: 8px;
+}
+
+.sale-item {
+    position: relative; 
+}
+
+
+/* Íconos de acción */
+.action-icon {
+    position: absolute;
+    border: none;
+    top: 10px;
+    right: 10px;
+    font-size: 20px;
+    margin: 3px;
+    width: 18px;
+    height: 18px;
+    transition: transform 0.2s ease;
+    cursor: pointer;
+}
+
+/* Ícono editar */
+.edit-icon {
+    filter: sepia(1) saturate(1000%) hue-rotate(30deg); /* dorado */
+    margin: 3px 40px;
+}
+
+/* Ícono eliminar */
+.delete-icon {
+    filter: brightness(0) saturate(100%) invert(18%) sepia(100%) saturate(7499%) hue-rotate(353deg) brightness(94%) contrast(102%);
+    margin: 3px;
+}
+
+/* Hover efecto en íconos */
+.actions-buttons button:hover .action-icon {
+    transform: scale(1.2);
+}
+
+
+
+/* Contenedor general de mensajes */
+ul.messages {
+    list-style: none;
+    padding: 0;
+    margin: 20px 0;
+}
+
+/* Estilo base para todos los mensajes */
+.message {
+    padding: 12px 20px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    font-size: 0.95rem;
+    font-family: 'Segoe UI', sans-serif;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+/* Mensaje de éxito (success) */
+.message.success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+/* Mensaje de error */
+.message.error {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+/* Mensaje informativo */
+.message.info {
+    background-color: #d1ecf1;
+    color: #0c5460;
+    border: 1px solid #bee5eb;
+}
+
+/* Mensaje de advertencia (warning) */
+.message.warning {
+    background-color: #fff3cd;
+    color: #856404;
+    border: 1px solid #ffeeba;
+}
